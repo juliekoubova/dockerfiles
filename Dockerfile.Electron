@@ -1,0 +1,31 @@
+# escape=`
+FROM vs2019
+
+WORKDIR C:\TEMP
+SHELL [ "powershell", "-ExecutionPolicy", "Bypass", "-Command" ]
+COPY Environment.psm1 .
+
+COPY Install-Python2.7.18.ps1 .
+RUN ./Install-Python2.7.18.ps1
+
+COPY Install-Git2.28.0.ps1 .
+RUN ./Install-Git2.28.0.ps1
+
+ENV NODE_VERSION 12.18.4
+COPY Install-Node.ps1 .
+RUN ./Install-Node.ps1
+
+COPY Install-Yarn.ps1 .
+RUN ./Install-Yarn.ps1
+
+ENV GIT_CACHE_PATH C:\GitCache
+ENV DEPOT_TOOLS_DIR C:\DepotTools
+ENV DEPOT_TOOLS_WIN_TOOLCHAIN 0
+COPY Install-DepotTools.ps1 .
+RUN ./Install-DepotTools.ps1
+
+COPY Install-ElectronBuildTools.ps1 .
+RUN ./Install-ElectronBuildTools.ps1
+
+WORKDIR C:\src
+ENTRYPOINT [ "powershell" ]

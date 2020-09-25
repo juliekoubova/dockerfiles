@@ -1,0 +1,11 @@
+# escape=`
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
+
+WORKDIR C:\TEMP
+SHELL [ "powershell", "-NoLogo", "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-Command" ]
+
+COPY Install-VSBuildTools2019.ps1 .
+RUN Install-VSBuildTools2019.ps1
+
+COPY Install-WindowsSdk10.0.19041.0.ps1 .
+RUN Install-WindowsSdk10.0.19041.0.ps1

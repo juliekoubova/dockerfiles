@@ -1,1 +1,0 @@
-npm install --global @electron/build-tools

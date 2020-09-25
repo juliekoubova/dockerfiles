@@ -1,7 +1,8 @@
 docker run ^
-    --name electron-public ^
-    --memory 32GB ^
+    --name electron ^
     --interactive ^
     --tty ^
-    jkoubova/electron-public ^
+    --volume d:\src\electron:c:\src ^
+    --volume d:\gitcache:c:\gitcache ^
+    electron ^
     powershell
